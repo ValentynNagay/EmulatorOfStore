@@ -1,0 +1,2 @@
+# EmulatorOfStore
+Test task
