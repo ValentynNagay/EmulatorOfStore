@@ -5,7 +5,7 @@
  */
 public class AlcoholDrink extends Drink {
 	private String classification;
-	private double strength;
+	private String strength;
 	
 	/**
 	 * Constructs an object which describes an alcohol drink in a store.
@@ -14,7 +14,7 @@ public class AlcoholDrink extends Drink {
 	 * @param strength the capacity of alcohol
 	 */
 	public AlcoholDrink(String title, double purchasePrice, double volume, int availability, String classification,
-			double strength) {
+			String strength) {
 		super(title, purchasePrice, volume, availability);
 		this.classification = classification;
 		this.strength = strength;
