@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 
 /**
  * Presents a drink in general case.
@@ -6,9 +7,12 @@
  */
 public abstract class Drink {
 	private String title;
-	private double purchasePrice;
+	private BigDecimal purchasePrice;
 	private double volume;
 	private int availability;
+	private BigDecimal retailPrice;
+	private int quantityOfSold = 0;
+	private int quantityOfPurchased = 0;
 	
 	/**
 	 * Constructs an object which describes a general drink in a store.
@@ -19,9 +23,10 @@ public abstract class Drink {
 	 */
 	public Drink(String title, double purchasePrice, double volume, int availability) {
 		this.title = title;
-		this.purchasePrice = purchasePrice;
+		this.purchasePrice = new BigDecimal(purchasePrice);
 		this.volume = volume;
 		this.availability = availability;
+		retailPrice = new BigDecimal(purchasePrice);
 	}
 
 	public String getTitle() {
@@ -29,7 +34,7 @@ public abstract class Drink {
 	}
 
 	public double getPurchasePrice() {
-		return purchasePrice;
+		return purchasePrice.doubleValue();
 	}
 
 	public double getVolume() {
@@ -45,7 +50,7 @@ public abstract class Drink {
 	}
 
 	public void setPurchasePrice(double purchasePrice) {
-		this.purchasePrice = purchasePrice;
+		this.purchasePrice = new BigDecimal(purchasePrice);
 	}
 
 	public void setVolume(double volume) {
@@ -54,5 +59,51 @@ public abstract class Drink {
 
 	public void setAvailability(int availability) {
 		this.availability = availability;
-	}	
+	}
+	
+	/**
+	 * 
+	 */
+	public void applyStandardMarkUp() {
+		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.10)));
+	}
+	
+	/**
+	 * 
+	 */
+	public void applyWeekendMarkUp() {
+		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.15)));
+	}
+	
+	/**
+	 * 
+	 */
+	public void applyEveningMarkUp() {
+		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.08)));
+	}
+	
+	/**
+	 * 
+	 */
+    public void applyGrossMarkUp() {
+    	retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.07)));
+    }
+    
+    /**
+     * 
+     * @param quantity
+     */
+    public void sell(int quantity) {
+    	quantityOfSold += quantity;
+    	availability -= quantity;
+    }
+    
+    /**
+     * 
+     * @param quantity
+     */
+    public void buy(int quantity) {
+    	quantityOfPurchased += quantity;
+    	availability += quantity;
+    }
 }
