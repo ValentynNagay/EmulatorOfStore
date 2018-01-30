@@ -1,16 +1,13 @@
-import java.math.BigDecimal;
-
 /**
  * Presents a drink in general case.
  * @author Nagay Valentyn
  *
  */
-public abstract class Drink {
+public class Drink {
 	private String title;
-	private BigDecimal purchasePrice;
+	private double purchasePrice;
 	private double volume;
-	private int availability;
-	private BigDecimal retailPrice;
+	private int quantity;
 	private int quantityOfSold = 0;
 	private int quantityOfPurchased = 0;
 	
@@ -23,87 +20,83 @@ public abstract class Drink {
 	 */
 	public Drink(String title, double purchasePrice, double volume, int availability) {
 		this.title = title;
-		this.purchasePrice = new BigDecimal(purchasePrice);
+		this.purchasePrice = purchasePrice;
 		this.volume = volume;
-		this.availability = availability;
-		retailPrice = new BigDecimal(purchasePrice);
+		this.quantity = availability;
 	}
 
+	/**
+	 * Gets the title of a drink
+	 * @return the title of a drink
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Gets the purchase price of the drink
+	 * @return the purchase price of the drink
+	 */
 	public double getPurchasePrice() {
-		return purchasePrice.doubleValue();
+		return purchasePrice;
 	}
 
+	/**
+	 * Gets the volume of the drink
+	 * @return the volume of the drink
+	 */
 	public double getVolume() {
 		return volume;
 	}
 
-	public int getAvailability() {
-		return availability;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setPurchasePrice(double purchasePrice) {
-		this.purchasePrice = new BigDecimal(purchasePrice);
-	}
-
-	public void setVolume(double volume) {
-		this.volume = volume;
-	}
-
-	public void setAvailability(int availability) {
-		this.availability = availability;
+	/**
+	 * Gets the quantity of the drink of the shop
+	 * @return the quantity of the drink of the shop
+	 */
+	public int getQuantity() {
+		return quantity;
 	}
 	
 	/**
-	 * 
+	 * Gets the quantity of sold
+	 * @return the quantity of sold
 	 */
-	public void applyStandardMarkUp() {
-		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.10)));
+	public int getQuantityOfSold() {
+		return quantityOfSold;
 	}
 	
 	/**
-	 * 
+	 * Gets the quantity of purchased 
+	 * @return the quantity of purchased
 	 */
-	public void applyWeekendMarkUp() {
-		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.15)));
+	public int getQuantityOfPurchased() {
+		return quantityOfPurchased;
 	}
 	
 	/**
-	 * 
+	 * Adds a sold quantity to drink's information
+	 * @param quantity 
 	 */
-	public void applyEveningMarkUp() {
-		retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.08)));
+	public void addQuantityOfSold(int quantity) {
+		quantityOfSold += quantity;
+    	this.quantity -= quantity;
 	}
-	
-	/**
-	 * 
-	 */
-    public void applyGrossMarkUp() {
-    	retailPrice = purchasePrice.add(purchasePrice.multiply(new BigDecimal(0.07)));
-    }
     
     /**
-     * 
-     * @param quantity
+     * Purchases some quantity for increasing quantity of the drink
+     * @param quantity how much it needs to buy
      */
-    public void sell(int quantity) {
-    	quantityOfSold += quantity;
-    	availability -= quantity;
-    }
-    
-    /**
-     * 
-     * @param quantity
-     */
-    public void buy(int quantity) {
+    public void purchaseProduct(int quantity) {
     	quantityOfPurchased += quantity;
-    	availability += quantity;
+    	this.quantity += quantity;
+    }
+    
+    /**
+     * Overrides for showing standard information about the drink
+     * @return the standard information about the drink
+     */
+    @Override
+    public String toString() {
+    	return "Title: " + title + String.format("Volume: %.2f", volume);
     }
 }
