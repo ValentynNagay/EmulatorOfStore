@@ -76,7 +76,7 @@ public class Shop {
 	 * @return
 	 */
 	public boolean isOpenedStore(int hour) {
-		return (hour >= 8) && (hour <= 21); 
+		return (hour >= OPENING_TIME) && (hour <= CLOSING_TIME); 
 	}
 	
 	/**
@@ -91,11 +91,29 @@ public class Shop {
 	}
 	
 	public void emulate() {
-		for (int i = 0; i < NUMBER_DAYS_OF_MONTH; i++) {
-			for (int j = 0; j < NUMBER_HOURS_OF_DAY; j++) {
-				if (isOpenedStore(j)) {
-					Buyer[] buyers = new Buyer[rand.nextInt(MAX_NUMBER_OF_BUYERS) + 1]; // arriving buyers each hour
+		for (int day = 1; day <= NUMBER_DAYS_OF_MONTH; day++) {
+			for (int hour = 0; hour < NUMBER_HOURS_OF_DAY; hour++) {
+				if (isOpenedStore(hour)) {
+					if (hour == OPENING_TIME) {
+						System.out.println("----------------------------------------------------------------------\n"
+								+ "Opening of the shop...");
+					}
+						
+					System.out.println("Now is " + day + " day of the month and " + hour + " hour of the day --> the shop is opened.");
 					
+					Buyer[] buyers = new Buyer[rand.nextInt(MAX_NUMBER_OF_BUYERS) + 1]; // arriving buyers each hour
+					System.out.println("In the shop are " + buyers.length + " buyers now.");
+					for (int k = 0; k < buyers.length; k++) {
+						buyers[day].buyRandomProducts(drinks, this, day, hour);
+					}
+					
+					if (hour == CLOSING_TIME) {
+						System.out.println("Additional purchase of the drinks...");
+						System.out.println("Closing of the shop..."
+								+ "\n-----------------------------------------------------------------------");
+					}
+				} else {
+					System.out.println("Now is " + day + " day of the month and " + hour + " hour of the day --> the shop is closed.");
 				}
 			}
 		}
@@ -105,7 +123,7 @@ public class Shop {
 	 * 
 	 */
 	public void applyStandardMarkUp(Drink drink, int quantity) {
-		income += drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.10);
+		income += (drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.10)) * quantity;
 		drink.addQuantityOfSold(quantity);
 	}
 	
@@ -113,7 +131,7 @@ public class Shop {
 	 * 
 	 */
 	public void applyWeekendMarkUp(Drink drink, int quantity) {
-		income += drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.15);
+		income += (drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.15)) * quantity;
 		drink.addQuantityOfSold(quantity);
 	}
 	
@@ -121,7 +139,7 @@ public class Shop {
 	 * 
 	 */
 	public void applyEveningMarkUp(Drink drink, int quantity) {
-		income += drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.08);
+		income += (drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.08)) * quantity;
 		drink.addQuantityOfSold(quantity);
 	}
 	
@@ -129,17 +147,18 @@ public class Shop {
 	 * 
 	 */
 	public void applyGrossMarkUp(Drink drink, int quantity) {
-		income += drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.07);
+		income += (drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.10)) * 2;
+		income += (drink.getPurchasePrice() + (drink.getPurchasePrice() * 0.07)) * (quantity - 2);
 		drink.addQuantityOfSold(quantity);
     }
 	
 	public static void main(String[] args) {
-		try {
-			new Shop().initializeStore();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+			new Shop().emulate();
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 }
