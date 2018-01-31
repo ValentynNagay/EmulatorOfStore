@@ -3,7 +3,7 @@
  * @author Nagay Valentyn
  *
  */
-public class Drink {
+public abstract class Drink {
 	private String title;
 	private double purchasePrice;
 	private double volume;
@@ -18,11 +18,14 @@ public class Drink {
 	 * @param volume a capacity of bottle or something else
 	 * @param availability a quantity of it
 	 */
-	public Drink(String title, double purchasePrice, double volume, int availability) {
+	public Drink(String title, double purchasePrice, double volume, int availability, int quantityOfSold,
+			int quantityOfPurchased) {
 		this.title = title;
 		this.purchasePrice = purchasePrice;
 		this.volume = volume;
 		this.quantity = availability;
+		this.quantityOfSold = quantityOfSold;
+		this.quantityOfPurchased = quantityOfPurchased;
 	}
 
 	/**
@@ -99,4 +102,10 @@ public class Drink {
     public String toString() {
     	return "Title: " + title + String.format("Volume: %.2f", volume);
     }
+    
+    /**
+     * Gets information for the file format
+     * @return information for the file format
+     */
+    public abstract String toStringForFile();
 }
