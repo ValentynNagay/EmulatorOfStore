@@ -13,13 +13,29 @@ public class AlcoholDrink extends Drink {
 	 * @param classification which a type of alcohol
 	 * @param strength the capacity of alcohol
 	 */
-	public AlcoholDrink(String title, double purchasePrice, double volume, int availability, String classification,
-			String strength) {
-		super(title, purchasePrice, volume, availability);
+	public AlcoholDrink(String title, double purchasePrice, double volume, int availability, int quantityOfSold,
+			int quantityOfPurchased, String classification, String strength) {
+		super(title, purchasePrice, volume, availability, quantityOfSold, quantityOfPurchased);
 		this.classification = classification;
 		this.strength = strength;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + "Classification: " + classification + " Strength: " + strength;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toStringForFile() {
+		return String.format("Алкогольный, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
+				classification, getVolume(), strength, getQuantity(), getQuantityOfSold(), getQuantityOfPurchased());
+	}
 	
 
 }

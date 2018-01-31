@@ -22,8 +22,7 @@ public class SoftDrink extends Drink {
 	
 	@Override
 	/**
-	 * Gets string's simple presentation of an alcohol drink
-	 * @return string's simple presentation of an alcohol drink
+	 * {@inheritDoc}
 	 */
 	public String toString() {
 		return super.toString() + " Group: " + group + "Composition: " + composition;
@@ -31,8 +30,7 @@ public class SoftDrink extends Drink {
 	
 	@Override
 	/**
-	 * Gets information for the file format
-	 * @return information for the file format
+	 * {@inheritDoc}
 	 */
 	public String toStringForFile() {
 		return String.format("Безалкогольный, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
