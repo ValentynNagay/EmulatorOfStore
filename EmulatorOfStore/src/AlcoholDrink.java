@@ -33,7 +33,7 @@ public class AlcoholDrink extends Drink {
 	 */
 	@Override
 	public String toStringForFile() {
-		return String.format("Алкогольный, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
+		return String.format("РђР»РєРѕРіРѕР»СЊРЅС‹Р№, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
 				classification, getVolume(), strength, getQuantity(), getQuantityOfSold(), getQuantityOfPurchased());
 	}
 	
