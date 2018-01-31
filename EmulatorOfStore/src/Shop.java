@@ -222,14 +222,14 @@ public class Shop {
 	 */
 	private void makeReport() {
 		System.out.println("\n\n\t\t\t ***REPORT***\n*************************************************************");
-		System.out.println("Количество дозакупленного/проданного товара для каждой позиции:");
+		System.out.println("The number dosetupnode/sold for each item:");
 		for (Drink drink : drinks) {
 			System.out.println("Drink: " + drink.getTitle() + " Sold: " + drink.getQuantityOfSold());
 			System.out.println("Drink: " + drink.getTitle() + " Bought: " + drink.getQuantityOfPurchased());
 		}
 		System.out.println("-------------------------------------------------------------");
-		System.out.printf("Прибыль магазина от продаж: %.2f%n", income + expense);
-		System.out.printf("Закуплено на сумму: %.2f%n", -(expense));
+		System.out.printf("The income of the shop from sales: %.2f%n", income + expense);
+		System.out.printf("Purchased for the sum of: %.2f%n", -(expense));
 		System.out.println("*************************************************************");
 
 	}
