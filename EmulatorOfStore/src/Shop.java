@@ -231,6 +231,7 @@ public class Shop {
 		System.out.printf("The income of the shop from sales: %.2f%n", income + expense);
 		System.out.printf("Purchased for the sum of: %.2f%n", -(expense));
 		System.out.println("*************************************************************");
+		System.out.println("Information in the data file has been updated");
 
 	}
 	
