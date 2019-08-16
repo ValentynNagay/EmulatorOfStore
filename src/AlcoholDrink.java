@@ -27,7 +27,7 @@ public class AlcoholDrink extends Drink {
 	public String toString() {
 		return super.toString() + "Classification: " + classification + " Strength: " + strength;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
