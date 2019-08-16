@@ -33,7 +33,7 @@ public class SoftDrink extends Drink {
 	 * {@inheritDoc}
 	 */
 	public String toStringForFile() {
-		return String.format("Безалкогольный, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
+		return String.format("Non-alcoholic, %s, %.2f, %s, %.2f, %s, %d, %d, %d", getTitle(), getPurchasePrice(),
 				group, getVolume(), composition, getQuantity(), getQuantityOfSold(), getQuantityOfPurchased());
 	}
 	

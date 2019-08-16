@@ -159,7 +159,7 @@ public class Shop {
 			
 			String typeOfDrink = fields[0];
 			try {
-				if (typeOfDrink.contains("Алкогольный")) {
+				if (typeOfDrink.contains("Alcoholic")) {
 					/* **********************************
 					 * fields[1] is a title
 					 * fields[2] is a purchase price
@@ -172,7 +172,7 @@ public class Shop {
 					 * **********************************/
 					drinks.add(new AlcoholDrink(fields[1], Double.parseDouble(fields[2]), Double.parseDouble(fields[4]),
 							Integer.parseInt(fields[6]), Integer.parseInt(fields[7]), Integer.parseInt(fields[8]), fields[3], fields[5]));
-				} else if (typeOfDrink.contains("Безалкогольный")) {
+				} else if (typeOfDrink.contains("Non-alcoholic")) {
 					/* **********************************
 					 * fields[1] is a title
 					 * fields[2] is a purchase price
