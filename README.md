@@ -1,4 +1,4 @@
-# EmulatorOfStore
+# Grocery store emulator
 Test task
 
 The task is following: 
