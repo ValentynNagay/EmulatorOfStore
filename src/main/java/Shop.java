@@ -47,7 +47,7 @@ public class Shop {
 		for (int day = 1; day <= NUMBER_DAYS_OF_MONTH; day++) {
 			for (int hour = 0; hour < NUMBER_HOURS_OF_DAY; hour++) {
 				try {
-					Thread.sleep(300);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					System.err.println(e.getMessage());
 				}
