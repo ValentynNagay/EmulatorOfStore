@@ -47,7 +47,7 @@ public class Shop {
 		for (int day = 1; day <= NUMBER_DAYS_OF_MONTH; day++) {
 			for (int hour = 0; hour < NUMBER_HOURS_OF_DAY; hour++) {
 				try {
-					Thread.sleep(10);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					System.err.println(e.getMessage());
 				}
@@ -68,8 +68,8 @@ public class Shop {
 					}
 					System.out.println("* In the shop are " + buyers.length + " buyers now.\t\t\t\t\t\t *");
 					System.out.println("**************************************************************************");
-					for (int k = 0; k < buyers.length; k++) {
-						buyers[k].buyRandomProducts(drinks, this, day, hour);
+					for (Buyer buyer : buyers) {
+						buyer.buyRandomProducts(drinks, this, day, hour);
 					}
 					
 					if (hour == CLOSING_TIME) {
@@ -152,7 +152,7 @@ public class Shop {
 	 * @throws FileNotFoundException if file has not found
 	 */
 	private void initializeShop() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("data.csv"), "UTF-8");
+		Scanner in = new Scanner(new File(System.getProperty("user.dir") + "/src/main/resources/data.csv"), "UTF-8");
 		
 		while (in.hasNext()) {
 			String [] fields = in.nextLine().split(", ");
