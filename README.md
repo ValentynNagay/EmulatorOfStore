@@ -1,6 +1,2 @@
-# Grocery store emulator
-Test task
-
-The task is following: 
-
-Write a program to emulate the operation of a shop selling drinks in Java/C#.
+## Description
+A simple program to simulate the operation of a shop selling drinks. It is an example of a test task for a trainee test automation engineer.
